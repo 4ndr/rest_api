@@ -124,3 +124,5 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 TEMPLATE_DIRS = (os.path.join(BASE_DIR,  'templates'),)
+
+AUTH_USER_MODEL = 'profiles_api.UserProfile'
