@@ -5,31 +5,32 @@ from django.contrib.auth.models import BaseUserManager
 
 
 class UserProfileManager(BaseUserManager):
-	"""Helps Django work with our custom user model"""
-	
-	def create_user(self, email, name, password=None):
-		"""Creates a new user profile object"""
+    """Helps Django work with our custom user model."""
 
-		if not email:
-			raise ValueError('Users most have a email address.')
+    def create_user(self, email, name, password=None):
+        """Creates a new user profile."""
 
-		email = self.normalize_email(email)
-		user = self.model(email=email, name=name)
+        if not email:
+            raise ValueError('Users must have an email address.')
 
-		user.set_password(password)
-		user.save(using=self._db)
+        email = self.normalize_email(email)
+        user = self.model(email=email, name=name,)
 
-		return user
+        user.set_password(password)
+        user.save(using=self._db)
 
-	def create_superuser(self, email, name, password):
-		"""Create and saves a new superuser with given details."""
+        return user
 
-		user = self.create_user(email, name, password)
+    def create_superuser(self, email, name, password):
+        """Creates and saves a new superuser with given details."""
 
-		user.is_supperuser = True
-		user.is_staff = True
+        user = self.create_user(email, name=name, password=password)
 
-		user.save(using=self._db)
+        user.is_superuser = True
+        user.is_staff = True
+        user.save(using=self._db)
+
+        return user
 
 
 
@@ -45,7 +46,7 @@ class UserProfile(AbstractBaseUser, PermissionsMixin):
 	objects = UserProfileManager()
 
 	USERNAME_FIELD = 'email'
-	REQUERID_FIELD = ['name']
+	REQUIRED_FIELDS = ['name']
 
 	def get_full_name(self):
 		""" USed to get a users full name. """
