@@ -58,7 +58,7 @@ class UserProfile(AbstractBaseUser, PermissionsMixin):
 
 		return self.name
 
-	def __str__(seld):
+	def __str__(self):
 		"""Django uses this when it mades to convert the object to a string"""
 
 		return self.email
