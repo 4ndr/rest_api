@@ -25,7 +25,7 @@ SECRET_KEY = 'tbnhdo%irhfzir)17e4i#vf7hyu_c$5g#y9$vz!+p5er)clbmw'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['ec2-18-217-66-165.us-east-2.compute.amazonaws.com']
 
 
 # Application definition
@@ -58,7 +58,7 @@ ROOT_URLCONF = 'rest_api.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -122,7 +122,5 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
 STATIC_URL = '/static/'
-
-TEMPLATE_DIRS = (os.path.join(BASE_DIR,  'templates'),)
 
 AUTH_USER_MODEL = 'profiles_api.UserProfile'
